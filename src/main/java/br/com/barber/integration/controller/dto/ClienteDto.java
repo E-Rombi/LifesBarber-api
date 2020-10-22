@@ -51,8 +51,5 @@ public class ClienteDto {
 	public static Page<ClienteDto> converter(Page<Cliente> clientes) {
 		return clientes.map(ClienteDto::new);
 	}
-	
-	
-	
-	
+		
 }

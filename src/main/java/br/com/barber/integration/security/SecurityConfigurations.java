@@ -42,7 +42,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers("/h2-console").permitAll()
 		.antMatchers("/h2-console/**").permitAll()
 		.antMatchers("/h2-console/*").permitAll()
-		.antMatchers(HttpMethod.GET, "/clientes").permitAll()
+		.antMatchers(HttpMethod.GET, "/clientes/**").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
