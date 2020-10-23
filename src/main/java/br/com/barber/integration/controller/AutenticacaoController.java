@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.barber.integration.config.security.TokenService;
 import br.com.barber.integration.controller.dto.LoginForm;
 import br.com.barber.integration.controller.dto.TokenDto;
-import br.com.barber.integration.security.TokenService;
 
 @RestController
 @RequestMapping("/auth")

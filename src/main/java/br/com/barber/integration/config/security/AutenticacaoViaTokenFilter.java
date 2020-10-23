@@ -1,4 +1,4 @@
-package br.com.barber.integration.security;
+package br.com.barber.integration.config.security;
 
 import java.io.IOException;
 

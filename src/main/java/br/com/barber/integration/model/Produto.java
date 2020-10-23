@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import br.com.barber.integration.enums.ProdutoStatus;
-import br.com.barber.integration.enums.ProdutoTipo;
+import br.com.barber.integration.model.enums.ProdutoStatus;
+import br.com.barber.integration.model.enums.ProdutoTipo;
 
 @Entity
 public class Produto implements Serializable {

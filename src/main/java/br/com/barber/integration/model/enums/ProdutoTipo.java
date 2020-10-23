@@ -1,4 +1,4 @@
-package br.com.barber.integration.enums;
+package br.com.barber.integration.model.enums;
 
 public enum ProdutoTipo {
 	
