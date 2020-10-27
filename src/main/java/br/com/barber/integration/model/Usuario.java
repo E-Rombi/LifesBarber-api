@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class Usuario implements UserDetails {
@@ -34,7 +35,7 @@ public class Usuario implements UserDetails {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.senha = senha;
+		this.senha = new BCryptPasswordEncoder().encode(senha);
 		this.perfis = perfis;
 	}
 
@@ -67,7 +68,7 @@ public class Usuario implements UserDetails {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = new BCryptPasswordEncoder().encode(senha);
 	}
 
 	@Override
