@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.barber.integration.controller.dto.ClienteDto;
+import br.com.barber.integration.controller.dto.validacao.MessageDto;
 import br.com.barber.integration.controller.form.ClienteForm;
 import br.com.barber.integration.model.Cliente;
 import br.com.barber.integration.service.ClienteService;
@@ -61,6 +63,12 @@ public class ClienteController {
 		form.atualizar(cliente);
 		clienteService.save(cliente);
 		return ResponseEntity.ok(form);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<MessageDto> deletar(@PathVariable Long id) {
+		clienteService.deleteById(id);
+		return ResponseEntity.ok(new MessageDto("Registro com id (" + id + ") deletado com sucesso !"));
 	}
 	
 }

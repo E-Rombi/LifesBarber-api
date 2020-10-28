@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.barber.integration.exception.RegisterNotFoundException;
 import br.com.barber.integration.model.Cliente;
 import br.com.barber.integration.repository.ClienteRepository;
 
@@ -27,11 +26,11 @@ public class ClienteService {
 	
 	public Cliente findById(Long id) {
 		Optional<Cliente> clienteOptional = clienteRepository.findById(id);
-		if (clienteOptional.isPresent()) {
-			return clienteOptional.get();
-		}
-		
-		throw new RegisterNotFoundException();
+		return clienteOptional.get();
+	}
+	
+	public void deleteById(Long id) {
+		clienteRepository.deleteById(id);
 	}
 	
 	
