@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +53,14 @@ public class ClienteController {
 		URI uri = builder.path("/clientes/{id}").buildAndExpand(cliente.getId()).toUri();
 		return ResponseEntity.created(uri).body(new ClienteDto(cliente));
 		
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<ClienteForm> atualizar(@RequestBody @Valid ClienteForm form, @PathVariable Long id) {
+		Cliente cliente = clienteService.findById(id);
+		form.atualizar(cliente);
+		clienteService.save(cliente);
+		return ResponseEntity.ok(form);
 	}
 	
 }

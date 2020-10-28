@@ -1,14 +1,16 @@
 package br.com.barber.integration.controller.dto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 public class LoginForm {
 	
-	
+	@Email
 	private String email;
+	
+	@NotBlank
 	private String senha;
 
 	public String getEmail() {

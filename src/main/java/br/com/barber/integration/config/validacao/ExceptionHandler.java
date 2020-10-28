@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -23,7 +24,7 @@ import br.com.barber.integration.controller.dto.validacao.ErrorFormDto.Campo;
 public class ExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@org.springframework.web.bind.annotation.ExceptionHandler(NoSuchElementException.class)
-	protected ResponseEntity<ErrorDto> handleNoSuchElementexception(NoSuchElementException ex) {
+	protected ResponseEntity<ErrorDto> handleNoSuchElementException(NoSuchElementException ex) {
 		return ResponseEntity
 				.status(HttpStatus.NOT_FOUND.value())
 				.body(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Registro não encontrado", LocalDateTime.now()));
@@ -50,5 +51,18 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 		errorDto.setCampos(campos);
 		
 		return super.handleExceptionInternal(ex, errorDto, headers, status, request);
+	}
+	
+	
+	@Override
+	protected ResponseEntity<Object> handleHttpMessageNotWritable(HttpMessageNotWritableException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+		
+		ResponseEntity<ErrorDto> body = ResponseEntity
+				.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+				.body(new ErrorDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Ocorreu um erro inesperado !", LocalDateTime.now()));
+		
+		return super.handleExceptionInternal(ex, body, headers, status, request);
+		
 	}
 }
