@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import br.com.barber.integration.model.Cliente;
 import br.com.barber.integration.model.Usuario;
@@ -12,6 +13,7 @@ import br.com.barber.integration.repository.UsuarioRepository;
 import br.com.barber.integration.service.ClienteService;
 
 @Configuration
+@Profile(value = {"dev", "test"})
 public class InitializationConfiguration implements CommandLineRunner {
 
 	@Autowired
