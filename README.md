@@ -1,4 +1,5 @@
-![Badge](https://img.shields.io/badge/Spring-version%202.3.5.RELEASE-green)
+![Badge](https://img.shields.io/badge/Spring%20version-2.3.5.RELEASE-green)
+
 
 # LifesBarber-api
 API de integração com o app LifesBarber
