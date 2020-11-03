@@ -72,7 +72,7 @@ public class ClienteForm {
 		return cliente;
 		
 	}
-
+	
 	public void atualizar(Cliente cliente) {
 		cliente.setCpf(cpf);
 		cliente.setDataNascimento(dataNascimento);

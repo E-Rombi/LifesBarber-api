@@ -2,6 +2,8 @@ package br.com.barber.integration.config;
 
 import java.time.LocalDate;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -25,12 +27,16 @@ public class InitializationConfiguration implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Usuario usuario = new Usuario(1L, "aluno", "aluno@email.com", "123", null);
+		Usuario usuario = criaUsuario();
 		Cliente cliente  = criaCliente();
 		
 			
 		userRepository.save(usuario);
 		clienteService.save(cliente);
+	}
+
+	private Usuario criaUsuario() {
+		return new Usuario(1L, "aluno", "1", "9999-9999", LocalDate.now(), "88888888","aluno@email.com", "123", null);
 	}
 
 	private Cliente criaCliente() {

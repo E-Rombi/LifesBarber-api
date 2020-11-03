@@ -1,5 +1,6 @@
 package br.com.barber.integration.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -16,13 +17,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
-public class Usuario implements UserDetails {
+public class Usuario extends Pessoa implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
-	private String nome;
 	private String email;
 	private String senha;
 	
@@ -31,9 +31,9 @@ public class Usuario implements UserDetails {
 
 	public Usuario() {	}
 
-	public Usuario(Long id, String nome, String email, String senha, List<Perfil> perfis) {
-		this.id = id;
-		this.nome = nome;
+	public Usuario(Long id, String nome, String sobrenome, String telefone, LocalDate dataNascimento, String cpf,
+			String email, String senha, List<Perfil> perfis) {
+		super(id, nome, sobrenome, telefone, dataNascimento, cpf);
 		this.email = email;
 		this.senha = new BCryptPasswordEncoder().encode(senha);
 		this.perfis = perfis;
@@ -45,14 +45,6 @@ public class Usuario implements UserDetails {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getEmail() {

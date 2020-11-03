@@ -21,55 +21,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.barber.integration.controller.dto.ClienteDto;
+import br.com.barber.integration.controller.dto.UsuarioDto;
 import br.com.barber.integration.controller.dto.validacao.MessageDto;
-import br.com.barber.integration.controller.form.ClienteForm;
-import br.com.barber.integration.model.Cliente;
-import br.com.barber.integration.service.ClienteService;
+import br.com.barber.integration.controller.form.UsuarioForm;
+import br.com.barber.integration.model.Usuario;
+import br.com.barber.integration.service.UsuarioService;
 
 @RestController
-@RequestMapping("/clientes")
-public class ClienteController {
+@RequestMapping("/usuarios")
+public class UsuarioController {
 	
 	@Autowired
-	private ClienteService clienteService;
+	private UsuarioService usuarioService;
 	
 	@GetMapping
-	public Page<ClienteDto> listar(@PageableDefault(direction = Direction.ASC, sort = "id", size = 10) Pageable page) {
-		Page<ClienteDto> clientes = ClienteDto.converter(clienteService.findAll(page));
-		return clientes;
+	public Page<UsuarioDto> listar(@PageableDefault(sort = "id", direction = Direction.ASC) Pageable page) {
+		Page<Usuario> usuarios = usuarioService.findAll(page);
+		return UsuarioDto.converter(usuarios);		
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ClienteDto> detalhar(@PathVariable Long id) {
-		ClienteDto cliente = new ClienteDto(clienteService.findById(id));
-		return ResponseEntity.ok(cliente);
+	public ResponseEntity<UsuarioDto> detalhar(@PathVariable Long id) {
+		Usuario usuario = usuarioService.findById(id);
+		return ResponseEntity.ok(new UsuarioDto(usuario));
+		
 	}
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<ClienteDto> inserir(@Valid @RequestBody ClienteForm form, UriComponentsBuilder builder) {
-		Cliente cliente = form.converter();
-		clienteService.save(cliente);
+	public ResponseEntity<UsuarioDto> inserir(@RequestBody @Valid UsuarioForm form, UriComponentsBuilder builder) {
+		Usuario usuario = form.converter();
+		usuarioService.save(usuario);
 		
-		URI uri = builder.path("/clientes/{id}").buildAndExpand(cliente.getId()).toUri();
-		return ResponseEntity.created(uri).body(new ClienteDto(cliente));
-		
+		URI uri = builder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
+		return ResponseEntity.created(uri).body(new UsuarioDto(usuario));
 	}
 	
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<ClienteDto> atualizar(@RequestBody @Valid ClienteForm form, @PathVariable Long id) {
-		Cliente cliente = clienteService.findById(id);
-		form.atualizar(cliente);
-		return ResponseEntity.ok(new ClienteDto(cliente));
+	public ResponseEntity<UsuarioDto> atualizar(@RequestBody @Valid UsuarioForm form, @PathVariable Long id) {
+		Usuario usuario = usuarioService.findById(id);
+		form.atualizar(usuario);
+		
+		return ResponseEntity.ok(new UsuarioDto(usuario));
 	}
 	
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<MessageDto> deletar(@PathVariable Long id) {
-		clienteService.deleteById(id);
+		usuarioService.deleteById(id);
+		
 		return ResponseEntity.ok(new MessageDto("Registro com id (" + id + ") deletado com sucesso !"));
 	}
 	
 }
+ 
