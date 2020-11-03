@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,14 @@ public class ClienteRepositoryTest {
 
 	@Autowired
 	private ClienteRepository repository;
-	private String nomeEsperado = "ALUNO";
-	private LocalDate dataNascimentoEsperado = LocalDate.now();
+	private String nomeEsperado;
+	private LocalDate dataNascimentoEsperado;
+	
+	@Before
+	public void init() {
+		nomeEsperado = "ALUNO";
+		dataNascimentoEsperado = LocalDate.now();
+	}
 	
 	
 	@Test

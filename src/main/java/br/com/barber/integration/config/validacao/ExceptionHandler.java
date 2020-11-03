@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,14 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<ErrorDto> handleNoSuchElementException(NoSuchElementException ex) {
 		return ResponseEntity
 				.status(HttpStatus.NOT_FOUND.value())
-				.body(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Registro não encontrado", LocalDateTime.now()));
+				.body(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Registro não encontrado.", LocalDateTime.now()));
+	}
+	
+	@org.springframework.web.bind.annotation.ExceptionHandler(DataIntegrityViolationException.class)
+	protected ResponseEntity<ErrorDto> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+		return ResponseEntity
+				.status(HttpStatus.BAD_REQUEST.value())
+				.body(new ErrorDto(HttpStatus.BAD_REQUEST.value(), "CPF já cadastrado.", LocalDateTime.now()));
 	}
 	
 	@Override
