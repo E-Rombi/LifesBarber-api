@@ -1,5 +1,6 @@
 package br.com.barber.integration.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class ClienteService {
 	
 	public void save(Cliente cliente) {
 		clienteRepository.save(cliente);
+	}
+	
+	public void saveAll(List<Cliente> clientes) {
+		clienteRepository.saveAll(clientes);
 	}
 	
 	public Cliente findById(Long id) {

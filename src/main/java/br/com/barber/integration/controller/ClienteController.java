@@ -24,6 +24,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.barber.integration.controller.dto.ClienteDto;
 import br.com.barber.integration.controller.dto.validacao.MessageDto;
 import br.com.barber.integration.controller.form.ClienteForm;
+import br.com.barber.integration.controller.form.ClienteFormAtualizacao;
 import br.com.barber.integration.model.Cliente;
 import br.com.barber.integration.service.ClienteService;
 
@@ -59,7 +60,7 @@ public class ClienteController {
 	
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<ClienteDto> atualizar(@RequestBody @Valid ClienteForm form, @PathVariable Long id) {
+	public ResponseEntity<ClienteDto> atualizar(@RequestBody @Valid ClienteFormAtualizacao form, @PathVariable Long id) {
 		Cliente cliente = clienteService.findById(id);
 		form.atualizar(cliente);
 		return ResponseEntity.ok(new ClienteDto(cliente));

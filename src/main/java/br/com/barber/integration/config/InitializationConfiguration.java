@@ -36,11 +36,11 @@ public class InitializationConfiguration implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		Usuario usuario  = criaUsuario();
-		Cliente cliente  = criaCliente();
 		List<Produto> produtos = Arrays.asList(criaProduto(), criaProduto2());
+		List<Cliente> clientes = Arrays.asList(criaCliente(), criaCliente2());
 			
 		usuarioService.save(usuario);
-		clienteService.save(cliente);
+		clienteService.saveAll(clientes);
 		produtoService.saveAll(produtos);
 	}
 
@@ -62,6 +62,17 @@ public class InitializationConfiguration implements CommandLineRunner {
 		cliente.setCpf("99999999");
 		cliente.setDataNascimento(LocalDate.now());
 		cliente.setNome("Aluno 1");
+		cliente.setSobrenome("UNIMEP");
+		cliente.setTelefone("11111111");
+		return cliente;
+	}
+	
+	private Cliente criaCliente2() {
+		Cliente cliente = new Cliente();
+		cliente.setId(2L);
+		cliente.setCpf("999999299");
+		cliente.setDataNascimento(LocalDate.now());
+		cliente.setNome("Aluno 2");
 		cliente.setSobrenome("UNIMEP");
 		cliente.setTelefone("11111111");
 		return cliente;
