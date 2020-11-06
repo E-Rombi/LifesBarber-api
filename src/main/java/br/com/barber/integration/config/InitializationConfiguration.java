@@ -53,12 +53,11 @@ public class InitializationConfiguration implements CommandLineRunner {
 	}
 	
 	private Usuario criaUsuario() {
-		return new Usuario(1L, "aluno", "1", "9999-9999", LocalDate.now(), "88888888","aluno@email.com", "123", null);
+		return new Usuario(1L, "Usuario", "1", "9999-9999", LocalDate.now(), "88888888","aluno@email.com", "123", null);
 	}
 
 	private Cliente criaCliente() {
 		Cliente cliente = new Cliente();
-		cliente.setId(1L);
 		cliente.setCpf("99999999");
 		cliente.setDataNascimento(LocalDate.now());
 		cliente.setNome("Aluno 1");

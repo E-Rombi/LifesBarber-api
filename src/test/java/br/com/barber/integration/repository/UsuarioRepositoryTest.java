@@ -1,10 +1,10 @@
 package br.com.barber.integration.repository;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -16,6 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.barber.integration.model.Usuario;
+import br.com.barber.integration.model.builder.UsuarioBuilder;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -26,17 +27,35 @@ public class UsuarioRepositoryTest {
 	private UsuarioRepository repository;
 	private String nomeEsperado;
 	private LocalDate dataNascimentoEsperado;
+	private Usuario usuario;
 	
 	@Before
 	public void init() {
-		nomeEsperado = "ALUNO";
+		nomeEsperado = "USUARIO";
 		dataNascimentoEsperado = LocalDate.now();
+		usuario = new UsuarioBuilder()
+							.setCpf("222.222.222-22")
+							.setDataNascimento(LocalDate.now())
+							.setEmail("testes@email.com")
+							.setNome("Mike")
+							.setSenha("123")
+							.setSobrenome("Jenkins")
+							.build();
+	}
+	
+	@Test
+	public void deveCadastrarUmUsuario() {
+		repository.save(usuario);
+		
+		Optional<Usuario> optional = repository.findByEmail(usuario.getEmail());
+		assertTrue(optional.isPresent());
+		assertEquals(optional.get().getNome(), usuario.getNome());
 	}
 	
 	
 	@Test
 	public void deveCarregarPeloId() {
-		Optional<Usuario> optional = repository.findById(1L);
+		Optional<Usuario> optional = repository.findById(888L);
 		
 		assertEquals(nomeEsperado, optional.get().getNome());
 		assertEquals(dataNascimentoEsperado, optional.get().getDataNascimento());
