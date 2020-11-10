@@ -20,9 +20,22 @@ public class ProdutoService {
 		return produtoRepository.findAll(pageable);
 	}
 
+	public void save(Produto produto) {
+		produtoRepository.save(produto);
+	}
+	
 	public void saveAll(List<Produto> produtos) {
 		produtoRepository.saveAll(produtos);
 	}
+
+	public Produto findById(Long id) {
+		return produtoRepository.findById(id).get();
+	}
+	
+	public void deleteById(Long id) {
+		produtoRepository.deleteById(id);
+	}
+	
 	
 	
 }

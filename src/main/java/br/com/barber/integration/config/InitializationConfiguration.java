@@ -49,7 +49,7 @@ public class InitializationConfiguration implements CommandLineRunner {
 	}
 
 	private Produto criaProduto2() {
-		return new Produto(2L, "Shampoo L'oreal", new BigDecimal(160.99), ProdutoStatus.ATIVO, ProdutoTipo.SERVICO);
+		return new Produto(2L, "Shampoo L'oreal", new BigDecimal(160.99), ProdutoStatus.ATIVO, ProdutoTipo.REVENDA);
 	}
 	
 	private Usuario criaUsuario() {

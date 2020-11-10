@@ -2,14 +2,19 @@ package br.com.barber.integration.controller.form;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+
 import br.com.barber.integration.model.Cliente;
 
 public class ClienteFormAtualizacao {
 
+	@NotBlank
 	private String nome;
 	
+	@NotBlank
 	private String sobrenome;
 	
+	@NotBlank
 	private String cpf;
 	
 	private String telefone;

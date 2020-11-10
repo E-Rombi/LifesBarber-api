@@ -35,7 +35,7 @@ public class ClienteControllerTest {
 	@Before
 	public void init() {
 		jsonPost = "{ \"nome\":\"Alex\", \"sobrenome\":\"Jhonson\", \"cpf\": \"444.444.444-44\"}";
-		jsonPut = "{ \"nome\":\"Alex\", \"sobrenome\":\"Jhonson\"}";
+		jsonPut = "{ \"nome\":\"Alex\", \"sobrenome\":\"Jhonson\", \"cpf\": \"444.444.123-44\"}";
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ public class ClienteControllerTest {
 					.andDo(print())
 					.andExpect(MockMvcResultMatchers.status().isCreated())
 					.andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
-					.andExpect(MockMvcResultMatchers.jsonPath("$.id", is(3)));
+					.andExpect(MockMvcResultMatchers.jsonPath("$.id", is(4)));
 						
 	}
 	
