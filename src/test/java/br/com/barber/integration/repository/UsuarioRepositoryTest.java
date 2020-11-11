@@ -8,8 +8,10 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -21,6 +23,7 @@ import br.com.barber.integration.model.builder.UsuarioBuilder;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @ActiveProfiles(profiles = "test")
+@FixMethodOrder(MethodSorters.JVM)
 public class UsuarioRepositoryTest {
 
 	@Autowired
