@@ -1,6 +1,7 @@
 package br.com.barber.integration.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class Compromisso implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Integer dia;
+	private LocalDate data;
 	private LocalTime hora;
 	
 	@ManyToOne
@@ -27,9 +28,16 @@ public class Compromisso implements Serializable {
 	@ManyToOne
 	private Produto servico;
 
-	public Compromisso(Long id, Integer dia, LocalTime hora, Cliente cliente, Produto servico) {
+	public Compromisso(Long id, LocalDate data, LocalTime hora, Cliente cliente, Produto servico) {
 		this.id = id;
-		this.dia = dia;
+		this.data = data;
+		this.hora = hora;
+		this.cliente = cliente;
+		this.servico = servico;
+	}
+	
+	public Compromisso(LocalDate data, LocalTime hora, Cliente cliente, Produto servico) {
+		this.data = data;
 		this.hora = hora;
 		this.cliente = cliente;
 		this.servico = servico;
@@ -45,12 +53,12 @@ public class Compromisso implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getDia() {
-		return dia;
+	public LocalDate getData() {
+		return data;
 	}
 
-	public void setDia(Integer dia) {
-		this.dia = dia;
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
 
 	public LocalTime getHora() {
