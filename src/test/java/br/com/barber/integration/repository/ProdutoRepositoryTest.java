@@ -63,9 +63,4 @@ public class ProdutoRepositoryTest {
 		assertEquals(produto.getNome(), optional.get().getNome());
 	}
 
-	@Test
-	public void deveAtualizarUmProduto() {
-		
-	}
-	
 }
