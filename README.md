@@ -21,5 +21,9 @@ utilizando a linguagem kotlin.
 - H2 Database
 - Swagger
 
+## Documentação
+Toda documentação da API foi construída com o Swagger.
+URL de acesso a documentação: https://lifesbarber-api.herokuapp.com/v1/docs
+
 ## Futuro
 Além da criação do aplicativo mobile, tem-se como meta desenvolver uma aplicação utilizando React para consumir essa API e criar o sistema WEB.
