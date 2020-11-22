@@ -44,8 +44,10 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers("/h2-console").permitAll()
 		.antMatchers("/h2-console/**").permitAll()
 		.antMatchers("/h2-console/*").permitAll()
+		.antMatchers("/docs").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
-		.antMatchers(HttpMethod.GET, "/clientes/**").permitAll()
+		.antMatchers(HttpMethod.POST, "/auth/*").permitAll()
+		.antMatchers(HttpMethod.POST, "/auth/**").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -56,7 +58,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring()
-        .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
+        .antMatchers("/**.html", "/v1/docs", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
 	}
 	
 	@Bean
