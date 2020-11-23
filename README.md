@@ -20,6 +20,7 @@ utilizando a linguagem kotlin.
 - JWT
 - H2 Database
 - Swagger
+- Docker
 
 ## Documentação
 Toda documentação da API foi construída com o Swagger.
