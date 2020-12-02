@@ -27,21 +27,26 @@ import br.com.barber.integration.controller.form.UsuarioForm;
 import br.com.barber.integration.controller.form.UsuarioFormAtualizacao;
 import br.com.barber.integration.model.Usuario;
 import br.com.barber.integration.service.UsuarioService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/usuarios")
+@Api(tags = "Usuario", description = "Operações de Usuários")
 public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
 	
 	@GetMapping
+	@ApiOperation(value = "Lista todos os usuários de acordo com parametros passados")
 	public Page<UsuarioDto> listar(@PageableDefault(sort = "id", direction = Direction.ASC) Pageable page) {
 		Page<Usuario> usuarios = usuarioService.findAll(page);
 		return UsuarioDto.converter(usuarios);		
 	}
 	
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Mais informações do Usuário")
 	public ResponseEntity<UsuarioDto> detalhar(@PathVariable Long id) {
 		Usuario usuario = usuarioService.findById(id);
 		return ResponseEntity.ok(new UsuarioDto(usuario));
@@ -50,6 +55,7 @@ public class UsuarioController {
 	
 	@PostMapping
 	@Transactional
+	@ApiOperation(value = "Cadastrar novo Usuário")
 	public ResponseEntity<UsuarioDto> inserir(@RequestBody @Valid UsuarioForm form, UriComponentsBuilder builder) {
 		Usuario usuario = form.converter();
 		usuarioService.save(usuario);
@@ -60,6 +66,7 @@ public class UsuarioController {
 	
 	@PutMapping("/{id}")
 	@Transactional
+	@ApiOperation(value = "Atualizar o Usuário")
 	public ResponseEntity<UsuarioDto> atualizar(@RequestBody @Valid UsuarioFormAtualizacao form, @PathVariable Long id) {
 		Usuario usuario = usuarioService.findById(id);
 		form.atualizar(usuario);
@@ -69,6 +76,7 @@ public class UsuarioController {
 	
 	@DeleteMapping("/{id}")
 	@Transactional
+	@ApiOperation(value = "Deletar o Usuário")
 	public ResponseEntity<MessageDto> deletar(@PathVariable Long id) {
 		usuarioService.deleteById(id);
 		

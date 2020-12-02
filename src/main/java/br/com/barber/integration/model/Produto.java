@@ -10,8 +10,10 @@ import javax.persistence.Id;
 
 import br.com.barber.integration.model.enums.ProdutoStatus;
 import br.com.barber.integration.model.enums.ProdutoTipo;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Entity
+@ApiIgnore
 public class Produto implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

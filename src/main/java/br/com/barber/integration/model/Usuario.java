@@ -16,7 +16,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Entity
+@ApiIgnore
 public class Usuario extends Pessoa implements UserDetails {
 
 	private static final long serialVersionUID = 1L;

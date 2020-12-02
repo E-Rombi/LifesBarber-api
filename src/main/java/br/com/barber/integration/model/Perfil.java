@@ -7,7 +7,10 @@ import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Entity
+@ApiIgnore
 public class Perfil implements GrantedAuthority {
 
 	private static final long serialVersionUID = 1L;

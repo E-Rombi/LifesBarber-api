@@ -9,7 +9,9 @@ import br.com.barber.integration.model.Produto;
 import br.com.barber.integration.model.builder.ProdutoBuilder;
 import br.com.barber.integration.model.enums.ProdutoStatus;
 import br.com.barber.integration.model.enums.ProdutoTipo;
+import io.swagger.annotations.ApiModel;
 
+@ApiModel(description = "Formulário de atualização de Produto")
 public class ProdutoFormAtualizacao {
 
 	@NotBlank

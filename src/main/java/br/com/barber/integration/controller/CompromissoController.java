@@ -32,9 +32,12 @@ import br.com.barber.integration.model.Compromisso;
 import br.com.barber.integration.service.ClienteService;
 import br.com.barber.integration.service.CompromissoService;
 import br.com.barber.integration.service.ProdutoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/compromissos")
+@Api(tags = "Compromisso", description = "Operações de Compromissos")
 public class CompromissoController {
 
 	@Autowired
@@ -48,6 +51,7 @@ public class CompromissoController {
 	
 	
 	@GetMapping
+	@ApiOperation(value = "Lista todos os Compromissos de acordo com parâmetros passados")
 	public Page<CompromissoDto> listar(@PageableDefault(sort = "id", direction = Direction.ASC) Pageable page) {
 		Page<CompromissoDto> compromissos = CompromissoDto.converter(compromissoService.findAll(page));
 		
@@ -55,6 +59,7 @@ public class CompromissoController {
 	}
 	
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Mais informações do Compromisso")
 	public ResponseEntity<CompromissoDto> detalhar(@PathVariable Long id) {
 		CompromissoDto compromissoDto = new CompromissoDto(compromissoService.findById(id));
 		
@@ -63,6 +68,7 @@ public class CompromissoController {
 	
 	@PostMapping
 	@Transactional
+	@ApiOperation(value = "Cadastrar novo Compromisso")
 	public ResponseEntity<?> inserir(@RequestBody @Valid CompromissoForm form, UriComponentsBuilder builder) {
 		try {
 			Compromisso compromisso = form.converter(clienteService, produtoService);
@@ -78,6 +84,7 @@ public class CompromissoController {
 	
 	@PutMapping("/{id}")
 	@Transactional
+	@ApiOperation(value = "Atualizar o Compromisso")
 	public ResponseEntity<?> atualizar(@RequestBody @Valid CompromissoFormAtualizacao form, @PathVariable Long id) {
 		try {
 			Compromisso compromisso = compromissoService.findById(id);
@@ -94,6 +101,7 @@ public class CompromissoController {
 	
 	@DeleteMapping("/{id}")
 	@Transactional
+	@ApiOperation(value = "Deletar o Compromisso")
 	public ResponseEntity<MessageDto> deletar(@PathVariable Long id) {
 		compromissoService.deleteById(id);
 		return ResponseEntity.ok(new MessageDto("Registro com id (" + id + ") deletado com sucesso !"));

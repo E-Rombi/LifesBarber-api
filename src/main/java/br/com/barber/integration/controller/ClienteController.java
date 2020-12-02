@@ -27,21 +27,26 @@ import br.com.barber.integration.controller.form.ClienteForm;
 import br.com.barber.integration.controller.form.ClienteFormAtualizacao;
 import br.com.barber.integration.model.Cliente;
 import br.com.barber.integration.service.ClienteService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/clientes")
+@Api(tags = "Cliente", description = "Operações de Clientes")
 public class ClienteController {
 	
 	@Autowired
 	private ClienteService clienteService;
 	
 	@GetMapping
+	@ApiOperation(value = "Lista todos os clientes de acordo com parametros passados")
 	public Page<ClienteDto> listar(@PageableDefault(direction = Direction.ASC, sort = "id", size = 10) Pageable page) {
 		Page<ClienteDto> clientes = ClienteDto.converter(clienteService.findAll(page));
 		return clientes;
 	}
 	
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Mais informações do Cliente")
 	public ResponseEntity<ClienteDto> detalhar(@PathVariable Long id) {
 		ClienteDto cliente = new ClienteDto(clienteService.findById(id));
 		return ResponseEntity.ok(cliente);
@@ -49,6 +54,7 @@ public class ClienteController {
 	
 	@PostMapping
 	@Transactional
+	@ApiOperation(value = "Cadastrar novo Cliente")
 	public ResponseEntity<ClienteDto> inserir(@Valid @RequestBody ClienteForm form, UriComponentsBuilder builder) {
 		Cliente cliente = form.converter();
 		clienteService.save(cliente);
@@ -59,7 +65,8 @@ public class ClienteController {
 	}
 	
 	@PutMapping("/{id}")
-	@Transactional
+	@Transactional	
+	@ApiOperation(value = "Atualizar o Cliente")
 	public ResponseEntity<ClienteDto> atualizar(@RequestBody @Valid ClienteFormAtualizacao form, @PathVariable Long id) {
 		Cliente cliente = clienteService.findById(id);
 		form.atualizar(cliente);
@@ -68,6 +75,7 @@ public class ClienteController {
 	
 	@DeleteMapping("/{id}")
 	@Transactional
+	@ApiOperation(value = "Deletar o Cliente")
 	public ResponseEntity<MessageDto> deletar(@PathVariable Long id) {
 		clienteService.deleteById(id);
 		return ResponseEntity.ok(new MessageDto("Registro com id (" + id + ") deletado com sucesso !"));

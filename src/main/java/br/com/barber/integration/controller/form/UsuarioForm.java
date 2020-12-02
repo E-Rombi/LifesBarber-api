@@ -9,7 +9,9 @@ import javax.validation.constraints.Size;
 
 import br.com.barber.integration.model.Perfil;
 import br.com.barber.integration.model.Usuario;
+import io.swagger.annotations.ApiModel;
 
+@ApiModel(description = "Formulário de cadastro de Usuário")
 public class UsuarioForm {
 
 	@NotBlank

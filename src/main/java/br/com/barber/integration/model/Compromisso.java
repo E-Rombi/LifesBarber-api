@@ -10,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Entity
+@ApiIgnore
 public class Compromisso implements Serializable {
 
 	private static final long serialVersionUID = 1L;

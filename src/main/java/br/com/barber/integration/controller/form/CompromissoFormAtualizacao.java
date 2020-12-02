@@ -11,7 +11,9 @@ import br.com.barber.integration.model.Produto;
 import br.com.barber.integration.model.enums.ProdutoTipo;
 import br.com.barber.integration.service.ClienteService;
 import br.com.barber.integration.service.ProdutoService;
+import io.swagger.annotations.ApiModel;
 
+@ApiModel(description = "Formulário de atualização de Compromisso")
 public class CompromissoFormAtualizacao {
 	
 	@NotNull

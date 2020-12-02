@@ -31,7 +31,7 @@ public class SwaggerConfiguration {
         		Arrays.asList(
                         new ParameterBuilder()
                             .name("Authorization")
-                            .description("Header Token JWT")
+                            .description("Token JWT")
                             .modelRef(new ModelRef("string"))
                             .parameterType("header")
                             .required(false)
@@ -46,7 +46,7 @@ public class SwaggerConfiguration {
 					.title("API LifesBarber")
 					.description("API construída para integração do LifesBarber aplicativo mobile.")
 					.version("1.0")
-					.contact(new Contact("Eduardo Rombi", "", "eduardo.rombi@a.unimep.br"))
+					.contact(new Contact("Eduardo Rombi", "", "eduardo.rombi99@gmail.com"))
 					.termsOfServiceUrl("Termos de Serviço")
 					.licenseUrl("Apache License Version 2.0")
 					.build();

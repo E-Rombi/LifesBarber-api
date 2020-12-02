@@ -8,8 +8,9 @@ import javax.validation.constraints.NotNull;
 import br.com.barber.integration.model.Compromisso;
 import br.com.barber.integration.service.ClienteService;
 import br.com.barber.integration.service.ProdutoService;
+import io.swagger.annotations.ApiModel;
 
-
+@ApiModel(description = "Formulário de cadastro de Compromisso")
 public class CompromissoForm {
 
 	@NotNull

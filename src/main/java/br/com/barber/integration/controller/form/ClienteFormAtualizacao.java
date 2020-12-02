@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotBlank;
 
 import br.com.barber.integration.model.Cliente;
+import io.swagger.annotations.ApiModel;
 
+@ApiModel(description = "Formulário de atualização de Cliente")
 public class ClienteFormAtualizacao {
 
 	@NotBlank

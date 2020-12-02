@@ -12,8 +12,11 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotBlank;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@ApiIgnore
 public abstract class Pessoa  implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.barber.integration.config.security.TokenService;
 import br.com.barber.integration.controller.dto.LoginForm;
 import br.com.barber.integration.controller.dto.TokenDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/auth")
 @Profile("prod")
+@Api(tags = "Auth", description = "Operação de Autenticação")
 public class AutenticacaoController {
 	
 	@Autowired
@@ -29,6 +32,7 @@ public class AutenticacaoController {
 	private TokenService tokenService;
 
 	@PostMapping
+	@ApiOperation(value = "Autenticação necessária para consumir demais endpoints")
 	public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid LoginForm form) {
 		UsernamePasswordAuthenticationToken dadosLogin = form.converter();
 		try {
