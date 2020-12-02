@@ -37,7 +37,7 @@ public class ClienteControllerTest {
 							.accept(MediaType.APPLICATION_JSON))
 						.andDo(print())
 						.andExpect(status().isOk())
-						.andExpect(MockMvcResultMatchers.jsonPath("$.nome", is("ALUNO")));
+						.andExpect(MockMvcResultMatchers.jsonPath("$.nome", is("Joao")));
 		
 	}
 	
